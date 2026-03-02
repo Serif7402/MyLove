@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <title>A 💖 S | Sonsuz Aşk Yuvamız</title>
+    <title>Ş 💖 G | Sonsuz Aşk Yuvamız</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -44,7 +44,8 @@
             --apple-pink: #ff3b80;
         }
         body.login-active, body.login-active html {
-            height: 100%;
+            height: 100vh; /* Fallback */
+            height: 100dvh;
             margin: 0;
             font-family: 'SF Pro', Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background: var(--bg);
@@ -119,35 +120,41 @@
             transform: scale(0.01) rotate(-15deg);
         }
         .cloud-container { width: 280px; height: 190px; margin-top: 20px; display: flex; justify-content: center; align-items: center; }
-        .cloud-svg { width: 100%; height: 100%; filter: drop-shadow(0 15px 40px rgba(255, 0, 92, 0.45)); }
-        .memoji-wrapper { width: 240px; height: 240px; border-radius: 50%; background: var(--input-bg); box-shadow: 0 8px 20px rgba(0,0,0,0.5); overflow: hidden; }
-        .title-area { position: absolute; top: 210px; bottom: 120px; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .main-title { font-size: clamp(60px, 15vw, 88px); font-weight: 700; letter-spacing: -2px; color: var(--text-primary); text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent); margin: 0; }
-        .sub-title { font-size: clamp(36px, 9vw, 56px); font-weight: 700; letter-spacing: -1px; color: var(--text-primary); text-shadow: 0 0 8px var(--accent); margin: 20px 0 0 0; }
+        .cloud-svg { width: 100%; height: 100%; filter: drop-shadow(0 15px 40px rgba(255, 0, 92, 0.45)); animation: cloudBreathe 4s ease-in-out infinite alternate; }
+        @keyframes cloudBreathe { 0% { transform: scale(0.95) translateY(5px); filter: drop-shadow(0 10px 30px rgba(255, 0, 92, 0.3)); } 100% { transform: scale(1.05) translateY(-5px); filter: drop-shadow(0 20px 50px rgba(255, 0, 92, 0.6)); } }
+        .memoji-wrapper { width: 240px; height: 240px; border-radius: 50%; background: var(--input-bg); box-shadow: 0 10px 35px rgba(255,0,92,0.4), inset 0 0 20px rgba(255,255,255,0.1); overflow: hidden; border: 3px solid rgba(255,255,255,0.05); transform: scale(0.9); transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .visual-phase:not(.hidden-phase) .memoji-wrapper { transform: scale(1.05); }
+        .title-area { position: absolute; top: 210px; bottom: 120px; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; }
+        .main-title { font-size: clamp(60px, 15vw, 88px); font-weight: 800; letter-spacing: -2px; background: linear-gradient(135deg, #ffffff, #ffb3c6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 10px 30px rgba(255,0,92,0.4); margin: 0; }
+        .sub-title { font-size: clamp(28px, 8vw, 42px); font-weight: 600; letter-spacing: -0.5px; color: #fce4ec; text-shadow: 0 4px 15px rgba(255,0,92,0.5); margin: 20px 0 0 0; }
         .love-login-btn {
-            background: var(--accent);
+            background: linear-gradient(45deg, var(--accent), #ff4d85);
             color: white;
             border: none;
             padding: 16px 32px;
             border-radius: 999px;
             font-weight: 700;
             font-size: 18px;
-            box-shadow: 0 10px 30px rgba(255,0,92,0.3);
+            box-shadow: 0 10px 30px rgba(255,0,92,0.4), inset 0 -3px 0 rgba(0,0,0,0.2);
             cursor: pointer;
-            transition: transform .3s ease;
+            transition: transform .3s ease, box-shadow .3s ease;
             display: flex;
             align-items: center;
             gap: 8px;
             position: absolute;
             bottom: 50px;
+            animation: pulseBtn 2s infinite;
+            -webkit-tap-highlight-color: transparent;
         }
+        @keyframes pulseBtn { 0% { box-shadow: 0 0 0 0 rgba(255,0,92,0.6), inset 0 -3px 0 rgba(0,0,0,0.2); } 70% { box-shadow: 0 0 0 20px rgba(255,0,92,0), inset 0 -3px 0 rgba(0,0,0,0.2); } 100% { box-shadow: 0 0 0 0 rgba(255,0,92,0), inset 0 -3px 0 rgba(0,0,0,0.2); } }
         .love-login-btn:active { transform: scale(0.95); }
         #password-screen { justify-content: flex-start; padding-top: 8vh; background: var(--bg); transition: opacity 0.5s ease-out; }
         .password-container { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; max-width: 450px; }
         .password-title { font-size: 32px; font-weight: 700; margin: 40px 0 60px 0; }
         .input-wrapper { position: relative; width: 100%; margin-top: 20px; }
-        .login-input { width: 100%; padding: 18px 60px 18px 20px; background: var(--input-bg); border: 1px solid var(--input-bg); border-radius: 12px; color: white; font-size: 18px; text-align: center; }
-        .input-arrow { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 6px 20px rgba(255,0,92,0.5); touch-action: manipulation; }
+        .login-input { width: 100%; padding: 18px 60px 18px 20px; background: var(--input-bg); border: 1px solid var(--input-bg); border-radius: 12px; color: white; font-size: 18px; text-align: center; appearance: none; -webkit-appearance: none; outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .login-input:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(255,0,92,0.3); }
+        .input-arrow { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 6px 20px rgba(255,0,92,0.5); touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
         .input-arrow:active { transform: translateY(-50%) scale(0.95); }
         .back-btn { margin-top: 60px; background: none; border: none; color: var(--text-secondary); font-size: 16px; font-weight: 600; cursor: pointer; }
         #password-screen .container { width: 240px; height: 240px; display: flex; justify-content: center; align-items: center; perspective: 1000px; transform-style: preserve-3d; transition: transform 0.2s ease-out; }
@@ -313,7 +320,7 @@
                 <div id="phaseTwo" class="visual-phase hidden-phase">
                     <!-- === YENİ FOTOĞRAF GÜNCELLENDİ === -->
                     <div class="memoji-wrapper">
-                        <img src="https://raw.githubusercontent.com/Mrnobody-19-tech/Mylove/main/IMG_1037.jpeg" alt="Bizim Fotoğrafımız" style="width: 100%; height: 100%; object-fit: cover;" />
+                        <img src="https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg" alt="Bizim Fotoğrafımız" style="width: 100%; height: 100%; object-fit: cover;" />
                     </div>
                     <div class="title-area"><h2 class="sub-title">Sadece bize ait bir yer...</h2></div>
                 </div>
@@ -372,9 +379,9 @@
             <div class="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 max-w-7xl">
                 <a href="#hero" class="nav-link">
                     <div class="header-logo">
-                        <span class="logo-text">A</span>
+                        <span class="logo-text">Ş</span>
                         <svg class="mini-svg-heart" id="logoHeart" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path fill="url(#gMain)" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>
-                        <span class="logo-text">S</span>
+                        <span class="logo-text">G</span>
                     </div>
                 </a>
                 <nav class="hidden md:flex space-x-8 text-sm font-medium">
@@ -410,7 +417,7 @@
                     <div class="scroll-effect"><div class="event-card card p-6"><h3 class="text-2xl font-semibold mb-2 page-title">22.11.2024 - İlk İş Attığın An</h3><p>Ders bahanesiyle başlayan bir buluşmanın bu kadar güzel geçeceğini tahmin etmemiştim… Ama sanırım sen yanımdayken hiçbir şey tesadüf olamıyor.</p></div></div>
                     <div class="scroll-effect"><div class="event-card card p-6"><h3 class="text-2xl font-semibold mb-2 page-title">08.12.2024 - İlk Buluşma</h3><p>Takvimler bu anları sıradan bir tarih olarak görebilir, ama biz biliyoruz ki, her birinin ardında kocaman bir hikaye var. Kalplerimizin buluştuğu o ilk an.</p></div></div>
                     <div class="scroll-effect"><div class="event-card card p-6"><h3 class="text-2xl font-semibold mb-2 page-title">11.01.2025 - İlk Date</h3><p>O günü hatırlıyor musun? Zaman sanki sadece bize aitmiş gibi akmıştı… Gözlerine baktığımda, o anın hayatımın en güzel başlangıcı olacağını hissetmiştim.</p></div></div>
-                    <div class="scroll-effect"><div class="event-card card p-6"><h3 class="text-2xl font-semibold mb-2 page-title">08.03.2025 - İlişkimizin Başlangıcı</h3><pBen sadece çiçek vermedim… Biri solmasın diye Lego’dan yaptım, diğeri kalbimden kopup geldi. Çünkü ben sevdim mi, hem sanat yaparım hem tarih yazarım.</p></div></div>
+                    <div class="scroll-effect"><div class="event-card card p-6"><h3 class="text-2xl font-semibold mb-2 page-title">08.03.2025 - İlişkimizin Başlangıcı</h3><p>Ben sadece çiçek vermedim… Biri solmasın diye Lego’dan yaptım, diğeri kalbimden kopup geldi. Çünkü ben sevdim mi, hem sanat yaparım hem tarih yazarım.</p></div></div>
                     <div class="scroll-effect"><div class="event-card card p-6"><h3 class="text-2xl font-semibold mb-2 page-title">2030 Hedefimiz - Sonsuz Aşk Yuvamız</h3><p>Şimdilik sadece hayal ediyoruz, ama o yıl geldiğinde, sana kalbimi mühürlediğim bu yuvayı kuracağımıza eminim! Sonsuzluğa uzanan yolculuğumuzun en güzel başlangıcı olacak.</p></div></div>
                 </div>
             </section>
@@ -438,7 +445,7 @@
                 <h2 class="page-title text-5xl font-bold mb-12 text-center text-gray-300">Bize Özel Melodimiz</h2>
                 <div id="music-player" class="max-w-3xl mx-auto card p-6">
                     <p style="color: var(--color-secondary-accent);" class="mb-4">Dilerim Ki...</p>
-                    <div class="iframe-container"><iframe src="https://www.youtube.com/embed/aDju79MtUR8" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+                    <div class="iframe-container"><iframe src="https://www.youtube.com/embed/aDju79MtUR8?list=RDaDju79MtUR8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
                 </div>
             </section>
         </main>
@@ -460,7 +467,24 @@ document.addEventListener('DOMContentLoaded', () => {
         START_DATE: new Date(2025, 2, 8), // March 8, 2025
         AUTOPLAY_DURATION: 4000,
         BUTTERFLY_COUNT: 15,
-        IMAGE_LINKS: [ "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" ],
+        IMAGE_LINKS: [ 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg", 
+            "https://raw.githubusercontent.com/Serif7402/MyLove/main/IMG_0765.jpeg" 
+        ],
         SHORT_MESSAGES: ["Özledim 💕", "Aşkım", "Seni Seviyorum", "Çok Mutluyum", "Canım", "Her Şeyim", "İyikim", "Sonsuza", "Kalbimsin", "Güneşim", "Rüyam", "Huzurum", "Sevgilim", "Hayatım", "Mükemmelsin! ✨", "Hep Benimle", "Seninim", "İyi ki Sen ❤"]
     };
 
@@ -541,11 +565,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const circles = [{ r: 70, s: 7, n: 24, o: 0, c: 0 }, { r: 85, s: 9, n: 24, o: Math.PI / 24, c: 0.05 }, { r: 100, s: 11, n: 24, o: 0, c: 0.1 }, { r: 115, s: 13, n: 24, o: Math.PI / 24, c: 0.15 }];
         const colors = ['rgb(255,179,140)', 'rgb(255,128,128)', 'rgb(204,102,255)', 'rgb(128,179,255)', 'rgb(140,255,255)', 'rgb(179,255,204)'];
         colors.push(colors[0]);
-        const interpolate = (c1, c2, f) => { const a=c1.match(/\d+/g).map(Number),b=c2.match(/\d+/g).map(Number); return rgb(${Math.round(a[0]+f*(b[0]-a[0]))}, ${Math.round(a[1]+f*(b[1]-a[1]))}, ${Math.round(a[2]+f*(b[2]-a[2]))}); };
+        const interpolate = (c1, c2, f) => { const a=c1.match(/\d+/g).map(Number),b=c2.match(/\d+/g).map(Number); return `rgb(${Math.round(a[0]+f*(b[0]-a[0]))}, ${Math.round(a[1]+f*(b[1]-a[1]))}, ${Math.round(a[2]+f*(b[2]-a[2]))})`; };
         circles.forEach(c => {
             for (let i = 0; i < c.n; i++) {
                 const angle = (i/c.n)*2*Math.PI+c.o, dot = document.createElement('div');
-                dot.className = 'dot'; Object.assign(dot.style, { width: ${c.s}px, height: ${c.s}px, margin: -${c.s/2}px, transform: rotate(${angle*180/Math.PI}deg) translateY(${-c.r}px) });
+                dot.className = 'dot'; Object.assign(dot.style, { width: `${c.s}px`, height: `${c.s}px`, margin: `-${c.s/2}px`, transform: `rotate(${angle*180/Math.PI}deg) translateY(${-c.r}px)` });
                 let p = (((i/c.n)+c.c)%1+1)%1, s = p*(colors.length-1), idx = Math.floor(s);
                 dot.style.setProperty('--dot-color', interpolate(colors[idx], colors[idx+1], s-idx));
                 ELEMENTS.circleOfDots.appendChild(dot);
@@ -594,8 +618,8 @@ document.addEventListener('DOMContentLoaded', () => {
         flyingHeart.id = 'flyingHeart';
         flyingHeart.classList.add('flying-heart');
         Object.assign(flyingHeart.style, {
-            top: ${heartRect.top}px, left: ${heartRect.left}px,
-            width: ${heartRect.width}px, height: ${heartRect.height}px,
+            top: `${heartRect.top}px`, left: `${heartRect.left}px`,
+            width: `${heartRect.width}px`, height: `${heartRect.height}px`,
         });
         ELEMENTS.heartAnimationOverlay.appendChild(flyingHeart);
 
@@ -606,8 +630,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const introRect = ELEMENTS.introHeartContainer.getBoundingClientRect();
         flyingHeart.classList.add('glowing');
         Object.assign(flyingHeart.style, {
-            top: ${introRect.top}px, left: ${introRect.left}px,
-            width: ${introRect.width}px, height: ${introRect.height}px,
+            top: `${introRect.top}px`, left: `${introRect.left}px`,
+            width: `${introRect.width}px`, height: `${introRect.height}px`,
         });
 
         await sleep(1200); 
@@ -622,9 +646,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ELEMENTS.glassHeartIntro.classList.add('visible');
 
         const text = "Hoşgeldin Hayatımın Aşkı";
-        ELEMENTS.welcomeTextIntro.innerHTML = text.split(' ').map(word => <span>${word}</span>).join(' ');
+        ELEMENTS.welcomeTextIntro.innerHTML = text.split(' ').map(word => `<span>${word}</span>`).join(' ');
         document.querySelectorAll('.welcome-text-intro span').forEach((span, index) => {
-            span.style.animationDelay = ${0.5 + index * 0.2}s;
+            span.style.animationDelay = `${0.5 + index * 0.2}s`;
         });
 
         await sleep(3500);
@@ -655,10 +679,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const distance = Math.hypot(targetRect.left - startRect.left, targetRect.top - startRect.top);
         
         Object.assign(star.style, {
-            top: ${startRect.top + startRect.height / 2}px,
-            left: ${startRect.left + startRect.width / 2}px,
-            transform: rotate(${angle}rad),
-            transition: transform 1s ease-in-out, opacity 0.8s ease-in-out,
+            top: `${startRect.top + startRect.height / 2}px`,
+            left: `${startRect.left + startRect.width / 2}px`,
+            transform: `rotate(${angle}rad)`,
+            transition: 'transform 1s ease-in-out, opacity 0.8s ease-in-out',
         });
         ELEMENTS.heartAnimationOverlay.appendChild(star);
         
@@ -666,11 +690,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         flyingHeart.classList.remove('glowing');
         Object.assign(flyingHeart.style, {
-            top: ${targetRect.top}px, left: ${targetRect.left}px,
-            width: ${targetRect.width}px, height: ${targetRect.height}px,
+            top: `${targetRect.top}px`, left: `${targetRect.left}px`,
+            width: `${targetRect.width}px`, height: `${targetRect.height}px`,
         });
         star.style.opacity = '1';
-        star.style.transform = rotate(${angle}rad) translateX(${distance}px) scaleX(${distance / 2});
+        star.style.transform = `rotate(${angle}rad) translateX(${distance}px) scaleX(${distance / 2})`;
         
         ELEMENTS.glassHeartIntro.style.opacity = '0';
         
@@ -708,7 +732,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const size = Math.random() * 0.5 + 0.8, duration = Math.random() * 10 + 20, delay = Math.random() * 10;
         const startX = Math.random() * 100 + 'vw', endX = (Math.random() * 100 - 50) + 'vw';
         const startR = (Math.random() * 30 - 15) + 'deg', endR = (Math.random() * 30 - 15) + 'deg';
-        Object.assign(b.style, { animationDuration: ${duration}s, animationDelay: ${delay}s });
+        Object.assign(b.style, { animationDuration: `${duration}s`, animationDelay: `${delay}s` });
         b.style.setProperty('--x', startX); b.style.setProperty('--x-end', endX); b.style.setProperty('--s', size);
         b.style.setProperty('--r', startR); b.style.setProperty('--r-end', endR);
         ELEMENTS.butterflyContainer.appendChild(b);
@@ -726,7 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- IMAGE SLIDER ---
     const updateSliderPosition = () => {
-        ELEMENTS.sliderWrapper.style.transform = translateX(-${state.currentImageIndex * 100}%);
+        ELEMENTS.sliderWrapper.style.transform = `translateX(-${state.currentImageIndex * 100}%)`;
         document.querySelectorAll('.progress-dot').forEach((dot, index) => dot.classList.toggle('active', index === state.currentImageIndex));
     };
 
@@ -747,7 +771,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initializeSlider = () => {
         if (state.isSliderInitialized) return;
         CONFIG.IMAGE_LINKS.forEach((link, index) => {
-            const img = document.createElement('img'); img.src = link; img.alt = Anımız ${index + 1}; img.loading = "lazy";
+            const img = document.createElement('img'); img.src = link; img.alt = `Anımız ${index + 1}`; img.loading = "lazy";
             img.onerror = () => { img.src = "https://placehold.co/800x1000/f7a0b3/ffffff?text=Resim+Yuklenemedi"; };
             ELEMENTS.sliderWrapper.appendChild(img);
             const dot = document.createElement('div'); dot.className = 'progress-dot';
@@ -779,9 +803,9 @@ document.addEventListener('DOMContentLoaded', () => {
         el.innerHTML = content;
         const endX = (Math.random() - 0.5) * window.innerWidth * 0.6;
         const endY = -(Math.random() * window.innerHeight * 0.7 + 50);
-        Object.assign(el.style, { left: ${rect.left + rect.width / 2}px, top: ${rect.top + rect.height / 2}px, animationDelay: ${Math.random()}s });
-        el.style.setProperty('--end-x', ${endX}px);
-        el.style.setProperty('--end-y', ${endY}px);
+        Object.assign(el.style, { left: `${rect.left + rect.width / 2}px`, top: `${rect.top + rect.height / 2}px`, animationDelay: `${Math.random()}s` });
+        el.style.setProperty('--end-x', `${endX}px`);
+        el.style.setProperty('--end-y', `${endY}px`);
         ELEMENTS.body.appendChild(el);
         setTimeout(() => el.remove(), 10100);
     };
@@ -792,7 +816,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (diff < 0) return;
         const d = Math.floor(diff/864e5), h = Math.floor(diff%864e5/36e5), m = Math.floor(diff%36e5/6e4), s = Math.floor(diff%6e4/1e3);
         const y = Math.floor(d / 365.25), rd = Math.floor(d % 365.25);
-        ELEMENTS.timer.textContent = ${y} YIL ${rd} GÜN ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')};
+        ELEMENTS.timer.textContent = `${y} YIL ${rd} GÜN ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
     };
 
     // --- EVENT LISTENERS ---
@@ -813,7 +837,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ELEMENTS.prevBtn.addEventListener('click', () => changeSlide(-1));
         ELEMENTS.nextBtn.addEventListener('click', () => changeSlide(1));
         const startDrag = (e) => { state.isDragging = true; state.startX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX; ELEMENTS.sliderWrapper.style.transition = 'none'; ELEMENTS.slider.style.cursor = 'grabbing'; stopAutoplay(); };
-        const drag = (e) => { if (!state.isDragging) return; e.preventDefault(); const x = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX; const diff = x - state.startX; ELEMENTS.sliderWrapper.style.transform = translateX(${-state.currentImageIndex * 100 + (diff / ELEMENTS.slider.offsetWidth) * 100}%); };
+        const drag = (e) => { if (!state.isDragging) return; e.preventDefault(); const x = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX; const diff = x - state.startX; ELEMENTS.sliderWrapper.style.transform = `translateX(${-state.currentImageIndex * 100 + (diff / ELEMENTS.slider.offsetWidth) * 100}%)`; };
         const endDrag = (e) => { if (!state.isDragging) return; state.isDragging = false; ELEMENTS.sliderWrapper.style.transition = 'transform 0.5s ease-in-out'; ELEMENTS.slider.style.cursor = 'grab'; const endX = e.type === 'touchend' ? e.changedTouches[0].clientX : e.clientX; const diff = endX - state.startX; if (diff > ELEMENTS.slider.offsetWidth * 0.2) changeSlide(-1); else if (diff < -ELEMENTS.slider.offsetWidth * 0.2) changeSlide(1); else updateSliderPosition(); restartAutoplay(); };
         ['mousedown', 'touchstart'].forEach(evt => ELEMENTS.slider.addEventListener(evt, startDrag, { passive: true }));
         ['mousemove', 'touchmove'].forEach(evt => ELEMENTS.slider.addEventListener(evt, drag, { passive: evt === 'touchmove' ? false : true }));
@@ -834,4 +858,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 </body>
- </html>
+</html>
